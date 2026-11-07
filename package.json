@@ -1,0 +1,13 @@
+{
+  "name": "bse-trades",
+  "private": true,
+  "type": "module",
+  "workspaces": ["mock-bse", "server", "web"],
+  "scripts": {
+    "dev": "concurrently -n bse,api,web -c yellow,green,blue \"npm run start -w mock-bse\" \"npm run start -w server\" \"npm run dev -w web\"",
+    "demo": "cross-env DELAY_MS=45000 EXPECTED_PULL_MS=45000 npm run dev",
+    "build": "npm run build -w web",
+    "start": "concurrently -n bse,api \"npm run start -w mock-bse\" \"npm run start -w server\""
+  },
+  "devDependencies": { "concurrently": "^9.0.1", "cross-env": "^7.0.3" }
+}
